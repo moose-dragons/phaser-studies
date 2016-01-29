@@ -1,5 +1,6 @@
 window.onload = function () {
     var trump;
+    var trumpVomit;
     var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', {
         preload: preload,
         create: create,
@@ -10,7 +11,8 @@ window.onload = function () {
 
     function preload() {
         game.load.image('logo', './assets/img/phaser.png');
-        game.load.image('trump', './assets/img/trumphead.png')
+        game.load.image('trump', './assets/img/trumphead.png');
+        game.load.image('dollar', './assets/img/dollar.png');
     }
 
     function create() {
@@ -26,6 +28,8 @@ window.onload = function () {
         trump = game.add.sprite(
         game.world.centerX, game.world.centerY, 'trump');
         trump.anchor.setTo(0.5, 0.5);
+        
+        trumpVomit = game.add.group();
 
 
         // objects need to have their physics enabled
@@ -40,8 +44,21 @@ window.onload = function () {
         moveTrump();
     }
     
+    function spitMoney(){
+        game.input.keyboard.onDownCallback = function(k){
+            if(k == Phaser.Keyboard.SPACEBAR){
+                
+            }
+        game.input.keyboard.onUpCallback = function(e){
+            if(e.keyCode == Phaser.Keyboard.SPACEBAR){
+                
+            }
+        };
+    }
+    
     function moveTrump(){
         cursors = game.input.keyboard.createCursorKeys();
+    
 
         // Reset the players velocity (movement)
         trump.body.acceleration.x = 0;
@@ -93,5 +110,6 @@ window.onload = function () {
             else
                 trump.body.acceleration.y = 900;
         }
+        
     }
 };
